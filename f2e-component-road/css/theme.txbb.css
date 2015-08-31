@@ -1,0 +1,33 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","STHeitiSC-Light","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    text-shadow: 0 2px 0px rgba(0,0,0,.3);
+    color: #fff;
+}
+
+slides > slide,
+slides>slide:nth-child(6n+1),
+slides>slide:nth-child(6n+2),
+slides>slide:nth-child(6n+3),
+slides>slide:nth-child(6n+4),
+slides>slide:nth-child(6n+5) {
+    background-color: #48b4b1;
+}
+
+h1 {font-size: 60px;letter-spacing: 10px;}
+h2 {font-size: 46px;letter-spacing: 2px;}
+
+h1, h2, h3 {
+    font-weight: normal;
+    text-shadow: 0 2px 0px rgba(0,0,0,.3);
+    color: #fff;
+}
+
+p, ul, ol {
+    font-size: 36px;
+}
+
+img {
+    box-shadow: 0 10px 50px rgba(0,0,0,.3);
+    border: 6px solid #fff;
+    border-radius: 2px;
+}
