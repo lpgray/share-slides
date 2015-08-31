@@ -1,8 +1,12 @@
 body {
     font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","STHeitiSC-Light","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-    text-shadow: 0 2px 0px rgba(0,0,0,.3);
+    text-shadow: 0 2px 0px rgba(0,0,0,.2);
     color: #fff;
 }
+
+small {font-size: 20px;}
+
+a {margin: 0;display: inline;color: #edff6e; vertical-align: inherit;}
 
 slides > slide,
 slides>slide:nth-child(6n+1),
@@ -11,6 +15,31 @@ slides>slide:nth-child(6n+3),
 slides>slide:nth-child(6n+4),
 slides>slide:nth-child(6n+5) {
     background-color: #48b4b1;
+    color: #fff;
+}
+
+slides>slide .slide-wrapper strong {
+    color: #EDFF6E;
+}
+
+slides>slide .slide-wrapper blockquote {
+    background-color: transparent;
+    color: #fff;
+    font-size: 40px;
+}
+
+slides>slide .slide-wrapper blockquote p {
+    font-size: 30px;
+    text-shadow: 0 2px 0px rgba(0,0,0,.2);
+    font-family: Georgia,"Times New Roman",Times,Kai,"Kaiti SC",KaiTi,BiauKai,FontAwesome,serif;
+}
+
+slides>slide .slide-wrapper blockquote ::after {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f10e";
+    right: 6px;
+    position: absolute;
+    top: 6px;
 }
 
 h1 {font-size: 60px;letter-spacing: 10px;}
