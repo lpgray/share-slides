@@ -52,11 +52,12 @@ h1, h2, h3 {
 }
 
 p, ul, ol {
-    font-size: 36px;
+    font-size: 34px;
 }
 
 img {
     box-shadow: 0 10px 50px rgba(0,0,0,.3);
     border: 6px solid #fff;
     border-radius: 2px;
+    margin-top: 20px;
 }

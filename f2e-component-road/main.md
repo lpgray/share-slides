@@ -18,7 +18,7 @@ www.txbb.com
 1. 业务模块化
 2. 代码结构化
 3. 模块的压缩
-4. 一些第三方的框架介绍
+4. 组件化类库介绍
 
 
 [slide]
@@ -37,72 +37,78 @@ www.txbb.com
 # 其实就是 <br> Don't Repeat Yourself
 
 [slide]
-# 一、业务模块化
+# 一、业务的模块化
 
 [slide]
 ## 任何公司的任何互联网产品，都可以划分业务模块
 
 [slide]
-## 业务模块
+## 一些通用的业务模块
 ![业务模块](/1-1.png)
 
 [slide]
 # 业务模块化的好处
-专注维护专门的业务模块，业务模块之间很少会耦合，除非十分通用的库，否则不会有任何联系，这样的好处不言自明，永远不会混乱，而且非常利于团队管理。
+专人维护专门的业务模块，业务模块之间很少会耦合，除非十分通用的库，否则不会有任何联系，这样的好处不言自明，永远不会混乱，而且非常利于团队管理。
 
 [slide]
-## 前端代码中的业务模块
+## 同学帮帮前端代码的业务模块
 ![](/1-2.png)
 
 [slide]
-# 具备组件化的编码思维
-
-[slide]
-# 一个组件化思维编码的例子
-
-[slide]
-![](/1-3.png)
-![](/1-4.png)
-
-[slide]
-
-React有组件化的天然优势，在React的世界中，万事万物皆组件。
-
-[slide]
-# 二、代码的结构化
-
+# 我们应当具备组件化的编码思维
+组件化的编码思维，就是在进行前端开发时，要**随时准备抽象**。
 
 [slide]
 # 如何在项目开发初期需求不明确的情况下就开始着手组件化？
 
 [slide]
-# 1. 更细粒度的代码结构
-每个业务模块都由不同的页面组成，而不同的页面又是由组件组成。
-
-**组件可以认为是最细粒度的代码**
+# 例子：一个组件化思维编码的例子
 
 [slide]
-# 2. 抓住通用需求
+![](/1-3.png)
+![](/1-4.png)
+
+弹出选项组件
+
+[slide]
+```javascript
+var Selection = React.createClass({
+    return {
+        var isSingle = this.props.isSingle;
+        render: function(){
+            <div className="comm-selection">
+                // ......
+            </div>
+        }
+    }
+})
+```
+
+[slide]
+# 二、代码的结构化
+
+[slide]
+## 1. 写代码之前，先抓通用需求
 极其通用的需求，用常规的第三方类库完全可以解决。不过在资源丰富的大型企业中，他们还是喜欢自己去造轮子。
 比如：图片轮播、提示层、列表菜单、Alert、Confirm ……
 
 **不推荐极其通用的需求再重造一遍轮子**
 
 [slide]
-# 3.代码约束
-你要形成自己的代码书写规律，或者说规范，如果团队有团队规范，就应该遵循团队规范，社区遵循社区规范，这才是一个合格的开发者。
+## 2. 业务之后再规划代码结构
+每个业务模块都由不同的页面组成，而不同的页面又是由组件组成。
 
-**组件化的代码，一定是有规可循的代码结构，而前端代码最容易乱**
+**组件可以认为是最细粒度的代码结构**
 
 [slide]
-# 4.前端组件包含哪些？
-UI、JS逻辑、带有后端数据交互的模块？都是，那么再落地一些，一个前端组件，很有可能是以下组合：
+## 3.前端组件包含哪些代码结构？
+UI、JS逻辑、带有后端数据交互的模块？都可以认为是一个前端组件，那么再落地一些，一个前端组件，很有可能是以下组合：
 - DOM+CSS
 - DOM+CSS+JS
 - JS
 
 [slide]
-# HTML结构化
+# 1. HTML结构化
 可以把你的应用的页面想象成是由一个个HTML片段组合而成的结构。
 
 [slide]
@@ -111,6 +117,8 @@ UI、JS逻辑、带有后端数据交互的模块？都是，那么再落地一�
 <small>图片来自 [div.io](http://div.io?from=zy)</small>
 
 [slide]
+那么以下的一个HTML结构，就组成了一个页面：
+
 ```html
 <div class=”page”>
     <header class=”header”></header>
@@ -121,8 +129,9 @@ UI、JS逻辑、带有后端数据交互的模块？都是，那么再落地一�
 ```
 
 [slide]
-# 以DOM类名做命名空间
-header只服务于一个业务，当另一个业务突然冒出了通用需求，你可以直接将header改为comm-header，因为此时已经有两个业务方向使用了同一个组件，此时你已经完成了**抽象**的第一步了。
+# 2. 以DOM类名做命名空间
+
+比如，header只服务于一个业务，当另一个业务突然冒出了通用需求，你可以直接将header改为comm-header，因为此时已经有两个业务方向使用了同一个组件，此时你已经完成了**抽象**的第一步了。
 
 [slide]
 > 前端的复杂之处就是对于UI的交互逻辑难以进行抽象化。
@@ -131,26 +140,22 @@ header只服务于一个业务，当另一个业务突然冒出了通用需求�
 —— 前端开发之痛
 
 [slide]
-# CSS结构化
-刚刚我们定义的每一个DOM的最外层的classname做为命名空间，然后你可以在命名空间下，随意使用其他的类名。
+# 3. CSS结构化
+刚刚我们定义的每一个DOM的最外层的class做为命名空间，然后你可以在命名空间下，随意使用其他的类名，而不用担心冲突，你只需要维护**组件类名**就可以了。
 
-对于这种情况，推荐使用Sass, Less等预编译。
 
 [slide]
+对于刚刚那种以class为命名空间的形式编写样式，我推荐使用Sass, Less等预编译：
+
 ```css
 .comm-header {
     .title {}  /* ...... */
-}
-.mod-body{
-    .title {}  /* ...... */
-}
-.comm-footer{
-    .title {}  /* ...... */
+    .body {}
+    .footer {}
 }
 ```
-以上是 Less 代码
 
-以「comm-」开头的为通用模块，以「mod-」开头的为非通用模块，这是我目前定的规则。
+以上是 Less 代码
 
 [slide]
 
@@ -168,30 +173,66 @@ Show me the code
 <img src="/2-2.png" style="position: absolute;top: -10px;right: -50px;width: 500px;"/>
 
 [slide]
-# JS编写的两种形态
+# 4. JS无非就两种形态
 
-1. 模板动态生成
-2. 模板直接存在
+1. 模板直接存在
+2. 模板动态生成
 
 [slide]
-不讨论JS编写细节，你可以用任何前端库。
+# 模板直接存在
+
+HTML / CSS写好之后，再写对应的JS的形态属于模板直接存在的形态，大部分的Web站点都是此种形态，我们中规中矩的去写以下这种工程结构:
+```
+- project
+  - styles
+  - scripts
+  - images
+  - html
+```
+
+[slide]
+模板动态生成的形态，可以使用第三方模板类库:
+
+```html
+<script id="entry-template" type="text/x-handlebars-template">
+  <div class="entry">
+    <h1>{{title}}</h1>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>
+```
+
+[slide]
+简单一些的也可以直接在JS中拼字符串:
+
+```javascript
+var tmpl = '<div>';
+tmpl += ' <p>Hello World</p>'
+tmpl += '</div>';
+```
+
+[slide]
+当然现在ES6也支持了Template特性:
+
+```javascript
+var name = 'World';
+console.debug(`Hello, ${name}!`);
+
+// Hello, World!
+```
+
+[slide]
+前端的组件，无非就是 HTML / CSS / JS 的三者结合。
+
+[slide]
+今天，不讨论JS编写细节，你可以用任何前端库，无论是 jQuery也好，抑或 React、Angular等。
 
 [slide]
 # 组件，不一定非得有JS
 
-小到一个 Button，大到一个发送手机密码的业务逻辑，都可以认为是一个组件。
-
-[slide]
-# 代码的压缩
-
-[slide]
-可以在初期针对每一个业务模块分别压缩。
-<img src="/1-2.png" style="width: 400px;"/>
-
-[slide]
-工具
-
-<img src="/2-3.png" style="border: none;"/>
+小到一个 Button，大到一个发送手机密码的业务逻辑，都可以认为是一个组件，我们要做的就是**不断提炼和封装**。
 
 [slide]
 # 三、组件库的形成
@@ -209,42 +250,47 @@ Show me the code
 以DOM的类名作为命名空间的组件，HTML以特定的类名作为片段根节点，然后子节点随便你怎么折腾，此为**封装**。而后，以**根节点的类名为命名空间去写样式**，最后你的**页面是由HTML片段组合而成**，随着业务的发展，你会**不断重构你的HTML片段及CSS样式**，然后达到**逐渐抽象**的目的，最后是你的JS，某段JS会服务特定的HTML／CSS片段，他们的组合可以认为是组件。
 
 [slide]
-# 四、组件的设计
+# 四、如何设计组件？
 
 [slide]
 # 组件API设计
-- Classname的命名规范
-- HTML元素的data-attribute的使用
-- JS的面向对象设计
+1. 定义你的classname的命名空间
+
+2. HTML元素的data-attribute的使用，类似Bootstrap
+```html
+<div data-role="header" class="comm-header">通用页眉</div>
+```
+3. JS的API设计
 
 [slide]
 # JS的面向对象设计
-- 设计默认参数
 - 设计回调方法
-- 设计实例方法
-- 设计静态方法
-
-[slide]
-# 默认参数
-todo
+- 设计默认参数
 
 [slide]
 # 回调方法
-todo
+当你设计组件的时候，首先应该考虑的是，组件的职能。
+比如，选择一个日期，组件会返回一个日期字符串:
+```javascript
+Txbb.DatePicker({
+    onDateReceived : function(date) {}
+})
+```
+比如，在地图上选择一个位置，组件返回此位置周边的餐馆：
+```javascript
+Txbb.LocationSearch({
+    onResturantsReceived : function(resturants) {}
+})
+```
 
 [slide]
-# 实例方法
-todo
+# 默认参数
+默认参数的设计很重要，容错，空对象、空函数，“空”甚至都是一种设计模式
 
 [slide]
-# 静态方法
-todo
+我们的一个API示例
 
-[slide]
 ![](/4-1.png)
-
-[slide]
-如何进行事件绑定，到底是用传统的绑定形式呢，还是使用第三方的双向绑定类库，这些都随开发者自己折腾，只要对外暴露的API经久不衰，我们就达到目的了。
 
 [slide]
 自此，我的组件化之路就介绍的差不多了，<strong>带有命名空间的HTML片段与CSS，JS来做支持</strong>。
@@ -266,6 +312,8 @@ $(’.page’).on(’hover’,function(){
 ```
 
 [slide]
+# 代码的组织形式
+
 ![](/4-2.png)
 <small>图片来自 [div.io](http://div.io?from=zy)</small>
 
@@ -278,7 +326,7 @@ $(’.page’).on(’hover’,function(){
 # Web Components
 
 [slide]
-# Web Component
+# Web Components
 - Shadow DOM
 - HTML Imports
 - Custom Element
@@ -298,7 +346,46 @@ HTML/CSS/JS vs HTML Imports
 ——组件化思维
 
 [slide]
-# 五、使用组件化类库
+过去的代码：
+```shell
+- app
+    - scripts
+    - images
+    - html
+    - style
+```
+现在的代码：
+```shell
+- app
+    - user-center
+        - header
+           - header.css
+           - header.js
+        - footer
+    - activity
+        - header
+            - header.css
+            - header.js
+        - footer
+    - common
+        - header
+            - header.css
+            - header.js
+        - footer
+```
+[slide]
+# 五. 代码的构建
+
+[slide]
+可以在初期分别对每一个业务模块分别压缩。
+<img src="/1-2.png" style="width: 500px;"/>
+
+[slide]
+# 工具
+<img src="/2-3.png" style="border: none;"/>
+
+[slide]
+# 六、使用组件化类库
 
 [slide]
 # 组件化类库
@@ -315,4 +402,4 @@ HTML/CSS/JS vs HTML Imports
 一个面向未来的组件化代码书写方式
 
 [slide]
-Thanks
+# Thanks
