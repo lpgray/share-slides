@@ -238,12 +238,9 @@ console.debug(`Hello, ${name}!`);
 # 三、组件库的形成
 
 [slide]
-![](/3-1.png)
-
-[slide]
 # 三大方向
-
 纯样式、工具类、交互
+![](/3-1.png)
 
 [slide]
 # 简单定义一下
@@ -253,17 +250,13 @@ console.debug(`Hello, ${name}!`);
 # 四、如何设计组件？
 
 [slide]
-# 组件API设计
-1. 定义你的classname的命名空间
+# 组件设计
+1. 定义你的命名空间，编写表现层（HTML/CSS）
 
-2. HTML元素的data-attribute的使用，类似Bootstrap
-```html
-<div data-role="header" class="comm-header">通用页眉</div>
-```
-3. JS的API设计
+2. API设计（JS）
 
 [slide]
-# JS的面向对象设计
+# JS的API设计
 - 设计回调方法
 - 设计默认参数
 
@@ -293,9 +286,11 @@ Txbb.LocationSearch({
 ![](/4-1.png)
 
 [slide]
-自此，我的组件化之路就介绍的差不多了，<strong>带有命名空间的HTML片段与CSS，JS来做支持</strong>。
+自此，我的组件化之路就介绍的差不多了，<strong>带有命名空间的HTML片段与CSS，然后JS专门进行针对开发</strong>。
 
 [slide]
+# 组件化的代码结构
+
 ```html
 <div class=”page”>
    <div class=”header”></div>
@@ -314,38 +309,6 @@ $(’.page’).on(’hover’,function(){
 [slide]
 # 代码的组织形式
 
-![](/4-2.png)
-<small>图片来自 [div.io](http://div.io?from=zy)</small>
-
-[slide]
-![](/4-3.png)
-<br>
-眼熟
-
-[slide]
-# Web Components
-
-[slide]
-# Web Components
-- Shadow DOM
-- HTML Imports
-- Custom Element
-- Template
-
-[slide]
-# 算不算一次革命？
-HTML/CSS/JS vs HTML Imports
-
-[slide]
-回头看看咱们的代码的结构，跟Polymer很像
-![](/4-4.png)
-
-[slide]
-> 应用是由页面组成，页面是由组件组成。
-
-——组件化思维
-
-[slide]
 过去的代码：
 ```shell
 - app
@@ -373,6 +336,45 @@ HTML/CSS/JS vs HTML Imports
             - header.js
         - footer
 ```
+
+
+[slide]
+# 代码的新形式
+
+![](/4-2.png)
+<small>图片来自 [div.io](http://div.io?from=zy)</small>
+
+[slide]
+![](/4-3.png)
+<br>
+眼熟
+
+[slide]
+# Web Components
+
+新一代Web前端开发标准
+
+[slide]
+# Web Components
+- Shadow DOM
+- **HTML Imports**
+- Custom Element
+- Template
+
+[slide]
+# 算不算一次革命？
+**HTML/CSS/JS** vs **HTML Imports**
+
+[slide]
+回头看看咱们的代码的结构
+![](/4-4.png)
+
+[slide]
+> 应用是由页面组成，页面是由组件组成。
+
+——组件化思维
+
+
 [slide]
 # 五. 代码的构建
 
@@ -385,6 +387,10 @@ HTML/CSS/JS vs HTML Imports
 <img src="/2-3.png" style="border: none;"/>
 
 [slide]
+# 使用gulp构建的示例
+![](/5-1.png)
+
+[slide]
 # 六、使用组件化类库
 
 [slide]
@@ -394,12 +400,67 @@ HTML/CSS/JS vs HTML Imports
 - Angular 2
 
 [slide]
+# React
+JSX的扩展，直接更改了传统书写DOM的开发形式，让你在开发过程中不得不采用组件化的形式，在React的世界里，万事万物皆组件。
+
+<img src="/mbp-1.png" style="width: 300px;"/>
+<img src="/mbp-2.png" style="width: 300px;"/>
+
+[slide]
+# Angular 2
+有人说Angular 1 与 2 的区别相同于 Java 与 JavaScript 的区别，Angular 2 支持 Web Components。
+
+```js
+@Component({selector: 'my-app'})
+@View({template: '<h1>Hi {{ name }}</h1>'})
+// Component controller
+class MyAppComponent {
+  constructor() {
+    this.name = 'Ali';
+  }
+}
+```
+
+[slide]
+# Polymer
+构建在 Web Components 基础之上的前端框架，据说是最接近标准的库，它本身其实就是一个组件集，但目前的浏览器支持程度较差，一些内部的管理软件，还是可以尝试使用这一技术。
+
+```html
+<dom-module id="contact-card">
+  <link rel="import" type="css" href="contact-card.css">
+  <template>
+    <content></content>
+    <iron-icon icon="star" hidden$="{{!starred}}"></iron-icon>
+  </template>
+  <script>
+    Polymer({
+      is: 'contact-card',
+      properties: {
+        starred: Boolean
+      }
+    });
+  </script>
+</dom-module>
+```
+
+```html
+<contact-card starred>
+  <img src="profile.jpg" alt="Eric's photo">
+  <span>Eric Bidelman</span>
+</contact-card>
+```
+
+[slide]
 # 总结
 
 [slide]
-带有命名空间的HTML/CSS/JS组件化编码方式
+从现在开始，就以带有**命名空间的HTML/CSS/JS组件化编码方式**来规划你的项目，做好业务模块化、页面组件化。
 <br>
-一个面向未来的组件化代码书写方式
+在你不想使用第三方组件库的情况下，也许，这是一个面向未来的组件化代码书写方式。
 
 [slide]
 # Thanks
+
+![](/github-qrcode.png)
+
+<small>从这里获取这次分享的PPT</small>
