@@ -42,17 +42,19 @@ slides>slide .slide-wrapper blockquote ::after {
     top: 6px;
 }
 
-h1 {font-size: 60px;letter-spacing: 10px;}
-h2 {font-size: 46px;letter-spacing: 2px;}
+h1 {font-size: 50px;letter-spacing: 4px;}
+h2 {font-size: 40px;letter-spacing: 3px;}
+h3 {font-size: 30px;letter-spacing: 2px;}
 
 h1, h2, h3 {
     font-weight: normal;
     text-shadow: 0 2px 0px rgba(0,0,0,.3);
     color: #fff;
+    margin-bottom:.5em
 }
 
 p, ul, ol {
-    font-size: 34px;
+    font-size: 30px;
 }
 
 img {
